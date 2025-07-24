@@ -1,1 +1,1 @@
-# top-etch-a-sketch
+This is an etch-a-sketch program made with guidance from The Odin Project.
