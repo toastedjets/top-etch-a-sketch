@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#gridContainer {
+    display: flex;
+    width: 608px;
+    height: 608px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+#resetButton {
+    display: flex;
+    margin-top: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgb(214, 193, 169);
+}
