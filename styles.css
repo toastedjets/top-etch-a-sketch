@@ -8,8 +8,8 @@ body {
 
 #gridContainer {
     display: flex;
-    width: 608px;
-    height: 608px;
+    max-width: 608px;
+    max-height: 608px;
     flex-wrap: wrap;
     margin-top: 50px;
 }

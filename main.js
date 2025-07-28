@@ -25,6 +25,8 @@ function createGrid() {
     for (let i = 0; i < 256; i++) {
         const square = document.createElement("div");
 
+        square.dataset.mouseenterCount = 0;
+
         square.style.display = "flex";
         square.style.width = "36px";
         square.style.height = "36px";
@@ -56,7 +58,23 @@ function run() {
 **Description: The handler for when the mouse enters a square in the grid
 */
 function handleMouseEnter(event) {
-    event.target.style.backgroundColor = "red";
+    const square = event.target;
+
+    let currentCount = parseInt(square.dataset.mouseenterCount);
+
+    if (currentCount < 10) {
+        currentCount++;
+        square.dataset.mouseenterCount = currentCount;
+
+        const alphaValue = currentCount * 0.1;
+        const red = Math.floor(Math.random() * 256) + "";
+        const blue = Math.floor(Math.random() * 256) + "";
+        const green = Math.floor(Math.random() * 256) + "";
+    
+        square.style.backgroundColor = `rgba(${red}, ${blue}, ${green}, ${alphaValue})`;
+    } else {
+        square.style.backgroundColor = "rgba(0, 0, 0, 1.0)";
+    }
 }
 
 /*
@@ -67,9 +85,17 @@ function handleMouseEnter(event) {
 */
 function handleResetButton() {
     let number = prompt("Enter the number of squares desired for each side of the grid");
+    number = parseInt(number);
+
+    if (isNaN(number) || number <= 0) {
+        alert("Please enter a valid positive number.");
+        return; // Exit if input is invalid
+    }
+    
     if (number > 100) {
         number = 100;
     }
+
     resetGrid(number);
 }
 
@@ -85,8 +111,9 @@ function resetGrid(number) {
 
     blankGrid();
 
-    const squareWidth = (576 / number) + "px";
-    const squareHeight = (576 / number) + "px";
+    const totalGridDimensions = 608;
+    const squareWidth = (totalGridDimensions - (2 * number)) / number + "px";
+    const squareHeight = (totalGridDimensions - (2 * number)) / number + "px";
     
     for (let i = 0; i < dimensions; i++) {
         const square = document.createElement("div");
